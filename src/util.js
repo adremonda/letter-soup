@@ -35,26 +35,32 @@ const chunkArray = (myArray, size) => {
  */
 const ocurrence = (word, grid) => {
     count = 0
-    for (let i= 0; i <rid.length; i++) {
-        for (let j = 0; j < grid[0].length; j++) {
-            count += matches2d()
+    const rowsQty = grid.length
+    const columsQty = grid[0].length
+    for (let i= 0; i <grid.length; i++) {
+        for (let j = 0; j < columsQty; j++) {
+            
+            for ([x, y] of directions) {
+                let rowDirection = i, columnDirection = j
+                let match = true
+                for (k of word) {
+                    if(
+                        !(0 > rowDirection || rowDirection >= rowsQty || 0 > columnDirection || columnDirection >= columsQty) && 
+                        k === grid[rowDirection][columnDirection]
+                    ) {
+                        rowDirection += x,columnDirection += y
+                    } else {
+                        match = false
+                        break
+                    }
+                }
+                if(match) count++
+            }
+
+            
         }
     }
     return count
-}
-
-matches2d = () => {
-    for ([x, y] of directions) {
-        let rowDirection = i, columnDirection = j
-        let match = true
-        for (letter of word) {
-            match = !(0 > rowDirection || rowDirection >= rowsQty || 0 > columnDirection || columnDirection >= columsQty) && 
-            letter === grid[rowDirection][columnDirection]
-            if(math)
-                rowDirection += x,columnDirection += y
-        }
-        if(match) count++
-    }
 }
 
 module.exports = {

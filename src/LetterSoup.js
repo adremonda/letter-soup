@@ -3,19 +3,19 @@
  *LetterSoup class return the number of ocurrences of a word in a grid
  * @class LetterSoup
  *
- * @param  {integer} columsQty
+ * @param  {integer} columnsQty
  * @param  {integer} rowsQty
  * @param  {string} characters
  */
 class LetterSoup {
 
     /**
-     * @param  {integer} columsQty
+     * @param  {integer} columnsQty
      * @param  {integer} rowsQty
      * @param  {string} characters
      */
-    constructor(rowsQty, columsQty, characters) {
-        this.columsQty = columsQty
+    constructor(rowsQty, columnsQty, characters) {
+        this.columnsQty = columnsQty
         this.rowsQty = rowsQty
         this.characters = characters
         this.directions = [[-1, 0], [1, 0], [1, 1],  [1, -1], [-1, -1], [-1, 1], [0, 1], [0, -1]]
@@ -28,8 +28,8 @@ class LetterSoup {
     makeGrid() {
         let tempArray = []
         const charactersArray = Array.from(this.characters)
-        for (let i = 0; i < charactersArray.length; i += this.columsQty) {
-            tempArray.push(charactersArray.slice(i, i+this.columsQty))
+        for (let i = 0; i < charactersArray.length; i += this.columnsQty) {
+            tempArray.push(charactersArray.slice(i, i+this.columnsQty))
         }
         this.grid = tempArray
     }
@@ -80,7 +80,7 @@ class LetterSoup {
         let match = false
         for (const letter of word) {
             match = 0 <= rowDirection && rowDirection < this.rowsQty && 
-                    0 <= columnDirection && columnDirection < this.columsQty && 
+                    0 <= columnDirection && columnDirection < this.columnsQty && 
                     letter === this.grid[rowDirection][columnDirection]
             if(match) {
                 rowDirection += x,columnDirection += y

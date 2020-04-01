@@ -15,8 +15,8 @@ class LetterSoup {
      * @param  {string} characters
      */
     constructor(rowsQty, columnsQty, characters) {
-        this.columnsQty = columnsQty
-        this.rowsQty = rowsQty
+        this.columnsQty = Number(columnsQty)
+        this.rowsQty = Number(rowsQty)
         this.characters = characters
         this.directions = [[-1, 0], [1, 0], [1, 1],  [1, -1], [-1, -1], [-1, 1], [0, 1], [0, -1]]
         this.grid = []

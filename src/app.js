@@ -9,7 +9,7 @@ const max2d = 100
 const range = (x) => max2d > x && x > 0
 const word = 'OIE'
 
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.post('/ocurrence', [
     check('columns').exists().bail().isNumeric().custom(range),
@@ -22,6 +22,7 @@ app.post('/ocurrence', [
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() })
     }
+    console.log(req.body)
     const letterSoup = new LetterSoup(req.body.rows, req.body.columns, req.body.characters)
     res.json({
         ocurrence: letterSoup.ocurrence(word)
@@ -30,7 +31,7 @@ app.post('/ocurrence', [
 
 
 app.get('/', (req, res) => {
-    res.sendfile(path.join(__dirname, '../public/index.html'))
+    res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 
 app.listen(port, () => {

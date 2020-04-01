@@ -41,7 +41,7 @@
             event.preventDefault()
             var form_data = $(this).serialize()
             $.post( '/ocurrence', form_data, function( response ) {
-                alert(response.ocurrence)
+                alert('the quantity of ocurrence is ' + response.ocurrence)
             });
         });
     </script>

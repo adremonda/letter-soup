@@ -7,7 +7,6 @@ const app = express()
 const port = process.env.PORT || 8080
 const max2d = 100
 const range = (x) => max2d > x && x > 0
-const word = 'OIE'
 
 app.use(express.urlencoded({ extended: true }))
 
@@ -16,13 +15,14 @@ app.post('/ocurrence', [
     check('rows').exists().bail().isNumeric().custom(range),
     check('characters').exists().bail().isAlpha()
         .custom((chras, { req }) => chras.length === req.body.rows*req.body.columns),
+    check('word').optional().isAlpha()
     ],  
     (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() })
     }
-    console.log(req.body)
+    const word = req.body.word || 'OIE'
     const letterSoup = new LetterSoup(req.body.rows, req.body.columns, req.body.characters)
     res.json({
         ocurrence: letterSoup.ocurrence(word)

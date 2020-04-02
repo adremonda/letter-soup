@@ -11,11 +11,11 @@ const range = (x) => max2d > x && x > 0
 app.use(express.urlencoded({ extended: true }))
 
 app.post('/ocurrence', [
-    check('columns').exists().bail().isNumeric().custom(range),
-    check('rows').exists().bail().isNumeric().custom(range),
-    check('characters').exists().bail().isAlpha()
+    check('columns').exists().bail().isNumeric().toInt().custom(range),
+    check('rows').exists().bail().isNumeric().toInt().custom(range),
+    check('characters').exists().bail().isAlpha().trim()
         .custom((chras, { req }) => chras.length === req.body.rows*req.body.columns),
-    check('word').optional().isAlpha()
+    check('word').optional().isAlpha().trim()
     ],  
     (req, res) => {
     const errors = validationResult(req)

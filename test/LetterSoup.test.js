@@ -9,7 +9,7 @@ test('Should return return the number of ocurrence (3)', () => {
 })
 
 test('Should return return the number of ocurrence (4)', () => {
-    const letterSoup = new LetterSoup('1', '10', 'EIOIEIOEIO')
+    const letterSoup = new LetterSoup('1', 10, 'EIOIEIOEIO')
     result = letterSoup.ocurrence('OIE')
     if (result !== 4) {
         throw new Error('Result should be 4. Got ' + result)      
@@ -17,7 +17,7 @@ test('Should return return the number of ocurrence (4)', () => {
 })
 
 test('Should return return the number of ocurrence (8)', () => {
-    const letterSoup = new LetterSoup('5', '5', 'EAEAEAIIIAEIOIEAIIIAEAEAE')
+    const letterSoup = new LetterSoup('5', 5, 'EAEAEAIIIAEIOIEAIIIAEAEAE')
     result = letterSoup.ocurrence('OIE')
     if (result !== 8) {
         throw new Error('Result should be 8. Got ' + result)      

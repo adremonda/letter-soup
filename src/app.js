@@ -4,11 +4,11 @@ const { check, validationResult} = require('express-validator')
 const path = require('path')
 
 const app = express()
-const port = process.env.PORT || 8080
 const max2d = 100
 const range = (x) => max2d > x && x > 0
 
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 app.post('/ocurrence', [
     check('columns').exists().bail().isNumeric().toInt().custom(range),
@@ -34,6 +34,4 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 
-app.listen(port, () => {
-    console.log('Server is up on port ' + port)
-})
+module.exports = app
